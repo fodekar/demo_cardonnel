@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    h1, h3 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        letter-spacing: 5px;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    .menu li {
+        list-style: none;
+    }
+    .questions a {
+        font-size: 1.2rem;
+    }
+    p {
+        font-size: 0.9rem;
+        font-weight: 200;
+        font-style: italic;
+    }
+</style>
+
+<div class="example-wrapper">
+    <ul class="menu">
+        <li><a href="#">Accueil</a></li>
+    </ul>
+
+    <ul class="questions">
+        {% for question in questions %}
+        <li>
+            <h4><a href="{{ path('response', {'uuid': question.uuid}) }}">{{ question.label }}</a> <span>{{ question.counter }}</span></h4>
+            <p>Publié, le {{ question.created_at }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
